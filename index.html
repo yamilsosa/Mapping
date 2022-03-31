@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+		<!-- Boostrap 5 css -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Using OpenLayers with Vite</title>
+		<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="./css/index.css" rel="stylesheet">
+		<link href="./style.css" rel="stylesheet">
+  	</head>
+  	<body>
+    	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      		<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">ISUR</a>
+      		<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      		<ul class="navbar-nav px-3">
+        		<li class="nav-item text-nowrap">
+          			<a class="nav-link" href="#">SALIR</a>
+				</li>
+			</ul>
+		</nav>
+
+    	<div class="container-fluid">
+      		<div class="row">
+        		<nav class="col-md-3 d-none d-md-block bg-light sidebar">
+					<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+						<span class="fs-4">Capas del Mapa</span>
+					</a>
+					<hr>
+    				<ul class="list-unstyled ps-0">
+						<li class="mb-1">
+							<button class="btn btn-toggle align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+							Catastro
+							</button>
+							<div class="collapse show" id="home-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li>
+									<div class="form-check">
+										<input type="radio" name="radioSec" id="radioSec" checked>
+										<label class="form-check-label" for="radioSec">
+											Sec
+										</label>
+									</div>
+									<!-- <a href="#" class="link-dark rounded">Sec</a> -->
+								</li>
+								<li>
+									<div class="form-check">
+										<input type="checkbox" value="" id="ckZona">
+										<label class="form-check-label" for="ckZona">
+										Zona
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="form-check">
+										<input type="checkbox" value="" id="ckRefunc">
+										<label class="form-check-label" for="ckRefunc">
+										Refuncionalidad
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="form-check">
+										<input type="checkbox" value="" id="ckBarrios">
+										<label class="form-check-label" for="ckBarrios">
+										Barrios
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="form-check">
+										<input type="checkbox" value="" id="ckManzana">
+										<label class="form-check-label" for="ckManzana">
+										Manzana
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="form-check">
+										<input type="checkbox" value="" id="ckParcela">
+										<label class="form-check-label" for="ckParcela">
+										Parcela
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="form-check">
+										<input type="checkbox" value="" id="ckGas">
+										<label class="form-check-label" for="ckGas">
+										Red Gas
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="form-check">
+										<input type="checkbox" value="" id="ckSalud">
+										<label class="form-check-label" for="ckSalud">
+										Salud
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="form-check">
+										<input type="checkbox" value="" id="ckCalles">
+										<label class="form-check-label" for="ckCalles">
+										Calles
+										</label>
+									</div>
+								</li>
+							</ul>
+							</div>
+						</li>
+						<li class="mb-1">
+							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+							Satelite
+							</button>
+							<div class="collapse" id="dashboard-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li><a href="#" class="link-dark rounded">Overview</a></li>
+							</ul>
+							</div>
+						</li>
+						<li class="mb-1">
+							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+							IDE Argentina
+							</button>
+							<div class="collapse" id="orders-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li><a href="#" class="link-dark rounded">New</a></li>
+							</ul>
+							</div>
+						</li>
+						<li class="border-top my-3"></li>
+						<!-- <li class="mb-1">
+							<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+							Account
+							</button>
+							<div class="collapse" id="account-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li><a href="#" class="link-dark rounded">New...</a></li>
+								<li><a href="#" class="link-dark rounded">Profile</a></li>
+								<li><a href="#" class="link-dark rounded">Settings</a></li>
+								<li><a href="#" class="link-dark rounded">Sign out</a></li>
+							</ul>
+							</div>
+						</li> -->
+					</ul>
+					<hr>
+					<div class="dropdown">
+					<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="./images/logo_sig.png" alt="" width="32" height="32" class="rounded-circle me-2">
+						<strong>SIGOB</strong>
+					</a>
+					<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+						<li><a class="dropdown-item" href="#">Colón</a></li>
+						<li><a class="dropdown-item" href="#">SALIR</a></li>
+					</ul>
+					</div>
+        		</nav>
+
+        		<main role="main" class="col-md-9 ml-sm-auto col-lg-9 pt-3 px-4">
+          			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+						<h1 class="h2">Mapa</h1>
+					</div>
+					<div class="container-fluid">
+						<div class='row align-vertical-controles'>
+							<div class='col-sm-1'>
+								<label for="format">Tamaño: </label>
+							</div>
+							<div class='col-sm-3'>
+								<select id="format" class="form-control" style="width:100%">
+									<option value="a0">A0 (bajo)</option>
+									<option value="a1">A1</option>
+									<option value="a2">A2</option>
+									<option value="a3">A3</option>
+									<option value="a4" selected>A4</option>
+									<option value="a5">A5 (alto)</option>
+								</select>
+							</div>
+							
+							<div class='col-sm-1'>
+								<label for="resolution">Resolución: </label>
+							</div>
+							<div class='col-sm-3'>
+								<select id="resolution" class="form-control" style="width:100%">
+									<option value="72">72 dpi (fast)</option>
+									<option value="150">150 dpi</option>
+									<option value="300">300 dpi (slow)</option>
+								</select>
+							</div>
+							<div class='col-sm-4' style="text-align:right">
+								<button id="export-pdf" class="btn btn-primary">Imprimir</button>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<!-- Mapa -->
+					<div id="map"></div>
+					<!-- Mapa -->
+					<hr>
+					<div class="container-fluid">
+						<div class='row align-vertical-controles'>
+							<div class='col-sm-12' style="text-align:left">
+								<input type="checkbox" id="regla" />
+								<label for="clear">Utilizar Regla</label>
+							</div>
+						</div>
+					</div>
+					<div class="container-fluid">
+						<div class='row align-vertical-controles'>
+							<div class='col-sm-2'>
+								<label for="type">Tipo de Medida &nbsp;</label>
+							</div>
+							<div class='col-sm-3'>
+								<select id="type" class="form-control controles" style="width:100%">
+									<option value="LineString">Length (LineString)</option>
+									<option value="Polygon">Area (Polygon)</option>
+								</select>
+							</div>
+							<div class='col-sm-4'>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" id="segments" checked />
+								<label for="segments">Mostrar longitudes de segmento</label>
+							</div>
+								<div class='col-sm-3'>
+								<input type="checkbox" id="clear" checked />
+								<label for="clear">Borrar medida anterior</label>
+							</div>
+						</div>
+					</div>
+						
+          			<h2>Datos</h2>
+					<div class="table-responsive">
+						<table class="table table-striped table-sm">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Header</th>
+									<th>Header</th>
+									<th>Header</th>
+									<th>Header</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1,001</td>
+									<td>Lorem</td>
+									<td>ipsum</td>
+									<td>dolor</td>
+									<td>sit</td>
+								</tr>
+								<tr>
+									<td>1,002</td>
+									<td>amet</td>
+									<td>consectetur</td>
+									<td>adipiscing</td>
+									<td>elit</td>
+								</tr>
+							</tbody>
+						</table>
+          			</div>
+        		</main>
+      		</div>
+		</div>
+  	</body>
+  	<script type="module" src="./js/main.js"></script>
+  	<script type="module" src="./js/sidebar.js"></script>
+</html>
+
+
